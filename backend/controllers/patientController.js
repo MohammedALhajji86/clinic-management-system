@@ -24,6 +24,18 @@ const createPatient = async (req, res) => {
     }
 };
 
+const getAllPatients = async (req, res) => {
+    try {
+        const allPatients = await db.query("SELECT * FROM patients ORDER BY created_at DESC");
+        
+        res.status(200).json(allPatients.rows);
+    } catch (error) {
+        console.error("Error fetching patients:", error.message);
+        res.status(500).json({ error:  "an error occurred while fetching the patients" });
+    }
+};
+
 module.exports = {
-    createPatient
+    createPatient,
+    getAllPatients
 };
