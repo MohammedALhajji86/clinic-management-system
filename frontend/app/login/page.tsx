@@ -28,7 +28,7 @@ export default function LoginPage() {
       router.push("/dashboard");
     } catch (err: unknown) {
       const error = err as AxiosError<{ error: string }>;
-      setError(error.response?.data?.error || "there was an error logging in. Please try again.");
+      setError(error.response?.data?.error || "There was an error logging in. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -41,10 +41,10 @@ export default function LoginPage() {
           <Stethoscope size={48} />
         </div>
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          clinic management system 
+          Clinic Management System
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          login to your account to manage your clinic&apos;s appointments, patients, and more.
+          Login to your account to manage your clinic&apos;s appointments, patients, and more.
         </p>
       </div>
 

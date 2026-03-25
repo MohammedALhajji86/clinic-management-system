@@ -27,7 +27,7 @@ export default function AddPatientModal({
     setIsLoading(true);
 
     if (!name || !age) {
-        toast.error( "name and age are required" );
+        toast.error("Name and age are required");
         setIsLoading(false);
         return;
     }
@@ -39,7 +39,7 @@ export default function AddPatientModal({
         phone,
       });
 
-      toast.success( "Patient added successfully" );
+      toast.success("Patient added successfully");
       
       setName("");
       setAge("");
@@ -64,7 +64,7 @@ export default function AddPatientModal({
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md transform transition-all duration-300 scale-100 p-6" dir="rtl">
         
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-xl font-bold text-gray-900">add patient</h3>
+          <h3 className="text-xl font-bold text-gray-900">Add Patient</h3>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition">
             <X className="h-6 w-6" />
           </button>
@@ -72,20 +72,20 @@ export default function AddPatientModal({
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">name *</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Name *</label>
             <input
               type="text"
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-right"
-              placeholder="مثال: محمد أحمد"
+              placeholder="Example: محمد أحمد"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">age *</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Age *</label>
               <input
                 type="number"
                 required
@@ -97,7 +97,7 @@ export default function AddPatientModal({
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">phone number (optional)</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number (Optional)</label>
               <input
                 type="tel"
                 value={phone}
@@ -115,7 +115,7 @@ export default function AddPatientModal({
               onClick={onClose}
               className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 transition"
             >
-            cancel
+              Cancel
             </button>
             <button
               type="submit"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import api from "@/services/api";
 import { Users, Calendar, LogOut, Activity, UserPlus } from "lucide-react";
@@ -25,7 +25,7 @@ export default function DashboardPage() {
   // 👈 State للتحكم بفتح وإغلاق النافذة المنبثقة
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
-  const fetchPatients = async () => {
+  const fetchPatients = useCallback(async () => {
     try {
       const response = await api.get("/patients");
       setPatients(response.data);
@@ -38,7 +38,7 @@ export default function DashboardPage() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [router]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -54,7 +54,7 @@ export default function DashboardPage() {
     }
 
     fetchPatients(); // fetch patients when the component mounts
-  }, [router]);
+  }, [router, fetchPatients]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -135,7 +135,7 @@ export default function DashboardPage() {
                 className="flex items-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
             >
               <UserPlus className="h-4 w-4 ml-2" />
-              add patient
+              Add Patient
             </button>
           </div>
           
@@ -153,7 +153,7 @@ export default function DashboardPage() {
                 {patients.length === 0 ? (
                   <tr>
                     <td colSpan={4} className="px-6 py-4 text-center text-sm text-gray-500">
-                      there are no patients yet. click the /add patient/ button to create your first patient record.
+                      There are no patients yet. Click the &quot;Add Patient&quot; button to create your first patient record.
                     </td>
                   </tr>
                 ) : (
@@ -162,7 +162,7 @@ export default function DashboardPage() {
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{patient.id}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{patient.name}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{patient.age} years</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{patient.phone || 'unavailable'}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{patient.phone || 'Unavailable'}</td>
                     </tr>
                   ))
                 )}
